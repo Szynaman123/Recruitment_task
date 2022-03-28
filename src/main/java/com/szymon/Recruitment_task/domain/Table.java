@@ -25,6 +25,13 @@ public class Table {
         this.kolumna4 = kolumna4;
     }
 
+    @Override
+    public String toString() {
+        return id + ";\"" + kolumna1 + "\";\"" +
+                kolumna2 + "\";\"" +
+                 kolumna3 + "\";\"" +
+                 kolumna4;
+    }
 
     public Long getId() {
         return id;

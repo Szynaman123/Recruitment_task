@@ -22,6 +22,89 @@ public class TableService {
     public Optional<Table> get(Long id){
        return tableRepository.findById(id);
     }
+    public List<Table> findAllSame(String columnName){
+        List<Table>list= new ArrayList<>();
+        List<Table>finalList= new ArrayList<>();
+        list=getAll();
+        switch (columnName){
+            case "kolumna1":
+                for (int i = 0; i < list.size(); i++){
+                    Table t= new Table();
+                    t=list.get(i);
+                    for (int j=i+1;j<list.size();j++){
+                        if(t.getKolumna1().equals(list.get(j).getKolumna1())){
+                            if(finalList.contains(t)){
+                                finalList.add(list.get(j));
+                            }else{
+                                finalList.add(t);
+                                finalList.add(list.get(j));
+                            }
+                        }
+                    }
+                }
+                break;
+            case "kolumna2":
+                for (int i = 0; i < list.size(); i++){
+                    Table t= new Table();
+                    t=list.get(i);
+                    for (int j=i+1;j<list.size();j++){
+                        if(t.getKolumna2().equals(list.get(j).getKolumna2())){
+                            if(finalList.contains(t)){
+                                finalList.add(list.get(j));
+                            }else{
+                                finalList.add(t);
+                                finalList.add(list.get(j));
+                            }
+                        }
+                    }
+                }
+                break;
+                case "kolumna3":
+                for (int i = 0; i < list.size(); i++){
+                    Table t= new Table();
+                    t=list.get(i);
+                    for (int j=i+1;j<list.size();j++){
+                        if(t.getKolumna3().equals(list.get(j).getKolumna3())){
+                            if(finalList.contains(t)){
+                                finalList.add(list.get(j));
+                            }else{
+                                finalList.add(t);
+                                finalList.add(list.get(j));
+                            }
+                        }
+                    }
+                }
+                break;
+                case "kolumna4":
+                for (int i = 0; i < list.size(); i++){
+                    Table t= new Table();
+                    t=list.get(i);
+                    for (int j=i+1;j<list.size();j++){
+                        if(t.getKolumna4().equals(list.get(j).getKolumna4())){
+                            if(finalList.contains(t)){
+                                finalList.add(list.get(j));
+                            }else{
+                                finalList.add(t);
+                                finalList.add(list.get(j));
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                return finalList;
+
+        }
+
+        return finalList;
+
+    }
+    public List<Table> findAllUnique(String columnName){
+        List<Table>list= new ArrayList<>();
+        List<Table>finalList= new ArrayList<>();
+        list=getAll();
+
+    }
 
 
 }
