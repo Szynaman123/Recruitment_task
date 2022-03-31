@@ -34,9 +34,11 @@ public class TableService {
                     for (int j=i+1;j<list.size();j++){
                         if(t.getKolumna1().equals(list.get(j).getKolumna1())){
                             if(finalList.contains(t)){
+                                if(!finalList.contains(list.get(j)))
                                 finalList.add(list.get(j));
                             }else{
                                 finalList.add(t);
+                                if(!finalList.contains(list.get(j)))
                                 finalList.add(list.get(j));
                             }
                         }
@@ -101,9 +103,16 @@ public class TableService {
     }
     public List<Table> findAllUnique(String columnName){
         List<Table>list= new ArrayList<>();
+        List<Table>templist= new ArrayList<>();
         List<Table>finalList= new ArrayList<>();
         list=getAll();
-
+        templist=findAllSame(columnName);
+        for (Table table : list) {
+            if (!templist.contains(table)) {
+                finalList.add(table);
+            }
+        }
+        return finalList;
     }
 
 

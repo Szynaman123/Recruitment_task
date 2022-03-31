@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Recruitment task in Spring Boot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">AJAX with Spring Boot</a>
+        </div>
+    </div>
+</nav>
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <h1>Recruitment task in Spring Boot</h1>
+
+        <div id="feedback"></div>
+
+        <select class="form-select" aria-label="Default select example">
+            <option value="kolumna1">Kolumna1</option>
+            <option value="kolumna2">Kolumna2</option>
+            <option value="kolumna3">Kolumna3</option>
+            <option value="kolumna4">Kolumna4</option>
+        </select>
+        <button type="button" id="bth-unique" class="btn btn-primary">Szukaj unikalnych</button>
+
+        <button type="button" id="bth-nonunique" class="btn btn-primary">Szukaj nieunikalnych</button>
+    </div>
+
+</div>
+<script type="text/javascript"
+        src="webjars/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var columnName="kolumna1";
+    $('.form-select').change(function () {
+        columnName = $('.form-select').val();
+    });
+    $("#bth-unique").click(function() {
+
+    $.ajax({
+      				type : 'GET',
+      				url : "/table/unique/"+columnName,
+      				dataType: 'json',
+      				success : function(data) {
+      				var json = "<h4>Ajax Response</h4>"
+                + JSON.stringify(data, null, 1);
+      					$('#feedback').html(json);
+      				}
+      			});
+  		});
+  		$("#bth-nonunique").click(function() {
+  			$.ajax({
+  				type : 'GET',
+  				url : "/table/nonunique/"+columnName,
+  				dataType: 'json',
+  				success : function(data) {
+  					var json = "<h4>Ajax Response</h4>"
+                + JSON.stringify(data, null, 1);
+      					$('#feedback').html(json);
+  				}
+  			});
+  		});
+</script>
+
+</body>
+</html>

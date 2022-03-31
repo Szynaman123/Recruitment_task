@@ -27,9 +27,9 @@ public class Table {
 
     @Override
     public String toString() {
-        return id + ";\"" + kolumna1 + "\";\"" +
-                kolumna2 + "\";\"" +
-                 kolumna3 + "\";\"" +
+        return id + ";" + kolumna1 + ";" +
+                kolumna2 + ";" +
+                 kolumna3 + ";" +
                  kolumna4;
     }
 
